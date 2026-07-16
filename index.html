@@ -11,7 +11,6 @@
         .active { display: block; }
         .hero { text-align: center; padding: 20px 0; }
         
-        /* هنا التعديل: زيادة المسافة السفلية للإعلانات */
         .ad-wrapper { margin: 20px 0 60px 0; min-height: 100px; width: 100%; display: flex; justify-content: center; border-bottom: 2px solid #333; padding-bottom: 20px; }
         
         .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 20px; }
@@ -19,11 +18,18 @@
         .card img { width: 100%; height: 120px; object-fit: cover; border-radius: 10px; }
         #admin-panel { display: none; background: #111; padding: 20px; border-radius: 20px; border: 2px solid var(--accent); margin-bottom: 20px; }
         #secret-trigger { position: fixed; bottom: 0; left: 0; width: 50px; height: 50px; z-index: 9999; cursor: pointer; }
+        
+        /* تنسيق رابط التيك توك الجديد */
+        .tiktok-link { position: fixed; bottom: 20px; right: 20px; z-index: 9998; color: #fff; text-decoration: none; font-weight: bold; background: #000; padding: 8px 15px; border-radius: 10px; border: 1px solid var(--accent); }
+        
         .download-btn { background: var(--accent); padding: 15px; text-align: center; border-radius: 10px; cursor: pointer; display: inline-block; width: 200px; }
         footer { border-top: 1px solid #333; margin-top: 50px; padding: 20px; font-size: 0.8em; color: #888; text-align: center; }
     </style>
 </head>
 <body>
+
+    <!-- رابط التيك توك -->
+    <a href="https://www.tiktok.com/@beamarab" target="_blank" class="tiktok-link">تيك توك: @beamarab</a>
 
     <div id="admin-panel">
         <h2>لوحة التحكم</h2>
@@ -39,7 +45,6 @@
     <div id="home-page" class="page active">
         <div class="hero">
             <h1>BEAMNG MODS</h1>
-            <!-- حاوية الإعلان مع مسافة كبيرة تحتها -->
             <div class="ad-wrapper">
                 <script async="async" data-cfasync="false" src="https://pl30386814.effectivecpmnetwork.com/66b05b15baf5dc4f179fd09c2187f434/invoke.js"></script>
                 <div id="container-66b05b15baf5dc4f179fd09c2187f434"></div>
