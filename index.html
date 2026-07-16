@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تسجيل الدخول</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#fafafa;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.card{
+    width:340px;
+    background:#fff;
+    border:1px solid #ddd;
+    border-radius:14px;
+    padding:30px 25px;
+    box-shadow:0 5px 18px rgba(0,0,0,.05);
+}
+
+.title{
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
+    margin-bottom:30px;
+    color:#222;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    margin-bottom:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    background:#fafafa;
+    font-size:15px;
+}
+
+button{
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:8px;
+    background:#0095f6;
+    color:#fff;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#0078d4;
+}
+
+.or{
+    text-align:center;
+    color:#888;
+    margin:20px 0;
+}
+
+a{
+    text-decoration:none;
+    color:#1877f2;
+    display:block;
+    text-align:center;
+    margin-top:10px;
+}
+
+.signup{
+    text-align:center;
+    margin-top:25px;
+    font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="title">تسجيل الدخول</div>
+
+<form>
+<input type="text" placeholder="اسم المستخدم أو البريد الإلكتروني">
+<input type="password" placeholder="كلمة المرور">
+
+<button>دخول</button>
+
+<div class="or">أو</div>
+
+<a href="#">نسيت كلمة المرور؟</a>
+
+<div class="signup">
+ليس لديك حساب؟
+<a href="#">إنشاء حساب</a>
+</div>
+
+</form>
+
+</div>
+
+</body>
+</html>
