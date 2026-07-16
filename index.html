@@ -9,7 +9,11 @@
         body { font-family: 'Cairo', sans-serif; background: var(--bg); color: #fff; margin: 0; }
         .page { display: none; padding: 20px; max-width: 1100px; margin: auto; }
         .active { display: block; }
-        .hero { height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #000; }
+        .hero { text-align: center; padding: 20px 0; }
+        
+        /* هنا التعديل: زيادة المسافة السفلية للإعلانات */
+        .ad-wrapper { margin: 20px 0 60px 0; min-height: 100px; width: 100%; display: flex; justify-content: center; border-bottom: 2px solid #333; padding-bottom: 20px; }
+        
         .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 20px; }
         .card { background: #111; padding: 10px; border-radius: 15px; border: 1px solid #333; cursor: pointer; }
         .card img { width: 100%; height: 120px; object-fit: cover; border-radius: 10px; }
@@ -35,9 +39,11 @@
     <div id="home-page" class="page active">
         <div class="hero">
             <h1>BEAMNG MODS</h1>
-            <!-- Native Banner -->
-            <script async="async" data-cfasync="false" src="https://pl30386814.effectivecpmnetwork.com/66b05b15baf5dc4f179fd09c2187f434/invoke.js"></script>
-            <div id="container-66b05b15baf5dc4f179fd09c2187f434"></div>
+            <!-- حاوية الإعلان مع مسافة كبيرة تحتها -->
+            <div class="ad-wrapper">
+                <script async="async" data-cfasync="false" src="https://pl30386814.effectivecpmnetwork.com/66b05b15baf5dc4f179fd09c2187f434/invoke.js"></script>
+                <div id="container-66b05b15baf5dc4f179fd09c2187f434"></div>
+            </div>
         </div>
         <div class="grid" id="cars-grid"></div>
     </div>
@@ -59,7 +65,6 @@
     <div id="secret-trigger" onclick="checkSecret()"></div>
 
     <script type="module">
-        // كود Firebase الخاص بك
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getFirestore, collection, addDoc, getDocs, deleteDoc, updateDoc, doc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
         
@@ -68,7 +73,6 @@
             projectId: "beamarab-e40e8"
         }));
 
-        // ... (باقي كود الجافاسكريبت الخاص بك كما هو) ...
         let allCars = {};
         let clickCount = 0;
         window.checkSecret = () => {
@@ -135,10 +139,7 @@
         }
         loadCars();
     </script>
-
-    <!-- إعلانات Adsterra -->
     <script src="https://pl30386812.effectivecpmnetwork.com/33/fc/a4/33fca407321f3fe472d9941f33cf26da.js"></script>
     <script src="https://pl30386813.effectivecpmnetwork.com/4b/9a/c6/4b9ac6296c7e152ccb44a302ef6ffcd7.js"></script>
-
 </body>
 </html>
