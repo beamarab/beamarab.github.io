@@ -1,114 +1,142 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>تسجيل الدخول</title>
-
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
-}
-
-body{
-    background:#fafafa;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-}
-
-.card{
-    width:340px;
-    background:#fff;
-    border:1px solid #ddd;
-    border-radius:14px;
-    padding:30px 25px;
-    box-shadow:0 5px 18px rgba(0,0,0,.05);
-}
-
-.title{
-    text-align:center;
-    font-size:24px;
-    font-weight:bold;
-    margin-bottom:30px;
-    color:#222;
-}
-
-input{
-    width:100%;
-    padding:14px;
-    margin-bottom:12px;
-    border:1px solid #ccc;
-    border-radius:8px;
-    background:#fafafa;
-    font-size:15px;
-}
-
-button{
-    width:100%;
-    padding:13px;
-    border:none;
-    border-radius:8px;
-    background:#0095f6;
-    color:#fff;
-    font-size:16px;
-    cursor:pointer;
-}
-
-button:hover{
-    background:#0078d4;
-}
-
-.or{
-    text-align:center;
-    color:#888;
-    margin:20px 0;
-}
-
-a{
-    text-decoration:none;
-    color:#1877f2;
-    display:block;
-    text-align:center;
-    margin-top:10px;
-}
-
-.signup{
-    text-align:center;
-    margin-top:25px;
-    font-size:14px;
-}
-</style>
+    <meta charset="UTF-8">
+    <title>BeamNG Mods Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --accent: #ff5e00; --bg: #050505; }
+        body { font-family: 'Cairo', sans-serif; background: var(--bg); color: #fff; margin: 0; }
+        .page { display: none; padding: 20px; max-width: 1100px; margin: auto; }
+        .active { display: block; }
+        .hero { height: 200px; display: flex; align-items: center; justify-content: center; background: #000; }
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 20px; }
+        .card { background: #111; padding: 10px; border-radius: 15px; border: 1px solid #333; cursor: pointer; }
+        .card img { width: 100%; height: 120px; object-fit: cover; border-radius: 10px; }
+        #admin-panel { display: none; background: #111; padding: 20px; border-radius: 20px; border: 2px solid var(--accent); margin-bottom: 20px; }
+        #secret-trigger { position: fixed; bottom: 0; left: 0; width: 50px; height: 50px; z-index: 9999; cursor: pointer; }
+        .download-btn { background: var(--accent); padding: 15px; text-align: center; border-radius: 10px; cursor: pointer; display: inline-block; width: 200px; }
+        footer { border-top: 1px solid #333; margin-top: 50px; padding: 20px; font-size: 0.8em; color: #888; text-align: center; }
+    </style>
 </head>
-
 <body>
 
-<div class="card">
+    <div id="admin-panel">
+        <h2>لوحة التحكم</h2>
+        <input type="hidden" id="edit-id" value="">
+        <input type="text" id="name" placeholder="اسم السيارة" style="width:100%; padding:8px; margin:5px 0;">
+        <input type="text" id="img1" placeholder="رابط الصورة" style="width:100%; padding:8px; margin:5px 0;">
+        <input type="text" id="link" placeholder="رابط التحميل" style="width:100%; padding:8px; margin:5px 0;">
+        <textarea id="desc" placeholder="المواصفات" style="width:100%; height:60px;"></textarea>
+        <button onclick="saveCar()" style="background:var(--accent); padding:10px; color:white; border:none; cursor:pointer;">حفظ / تحديث</button>
+        <div id="admin-list" style="margin-top:15px;"></div>
+    </div>
 
-<div class="title">تسجيل الدخول</div>
+    <div id="home-page" class="page active">
+        <div class="hero"><h1>BEAMNG MODS</h1></div>
+        <div class="grid" id="cars-grid"></div>
+    </div>
 
-<form>
-<input type="text" placeholder="اسم المستخدم أو البريد الإلكتروني">
-<input type="password" placeholder="كلمة المرور">
+    <div id="details-page" class="page">
+        <button onclick="showPage('home-page')">⬅️ رجوع</button>
+        <img id="d-img" style="width:100%; max-height:400px; border-radius:15px;">
+        <h1 id="d-name"></h1>
+        <p id="d-desc"></p>
+        <div id="d-link" class="download-btn">تحميل المود</div>
+    </div>
 
-<button>دخول</button>
+    <footer>
+        <hr style="border:0; border-top:1px solid #333;">
+        <p><strong>تنويه حقوق الملكية:</strong> جميع السيارات والمودات مملوكة لمطوريها الأصليين. هذا الموقع لا يستضيف الملفات بل يوفر روابط الوصول إليها فقط دون أي تعديل.</p>
+        <p><strong>اتصل بنا:</strong> إذا كنت المطور الأصلي وتود إزالة المحتوى الخاص بك، تواصل معنا فوراً ليتم حذفه من الموقع.</p>
+        <p><strong>إخلاء مسؤولية:</strong> الموقع غير مسؤول عن أي أضرار تقنية قد تلحق بجهازك نتيجة تحميل الملفات من روابط خارجية. استخدامك للموقع يعني موافقتك الكاملة على هذه الشروط.</p>
+        <p>&copy; 2026 BeamNG Mods Pro - جميع الحقوق محفوظة.</p>
+    </footer>
 
-<div class="or">أو</div>
+    <div id="secret-trigger" onclick="checkSecret()"></div>
 
-<a href="#">نسيت كلمة المرور؟</a>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs, deleteDoc, updateDoc, doc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        
+        const db = getFirestore(initializeApp({
+            apiKey: "AIzaSyCo1v5Ov-mmn25lpe6P3inS5AMGlcOfA24",
+            projectId: "beamarab-e40e8"
+        }));
 
-<div class="signup">
-ليس لديك حساب؟
-<a href="#">إنشاء حساب</a>
-</div>
+        let allCars = {};
+        let clickCount = 0;
 
-</form>
+        window.checkSecret = () => {
+            clickCount++;
+            if(clickCount >= 10) {
+                if(prompt("كلمة المرور:") === "97477429") {
+                    document.getElementById('admin-panel').style.display = 'block';
+                    loadAdminList();
+                    clickCount = 0;
+                }
+            }
+        };
 
-</div>
+        window.saveCar = async () => {
+            const id = document.getElementById('edit-id').value;
+            const car = { name: document.getElementById('name').value, img: document.getElementById('img1').value, link: document.getElementById('link').value, desc: document.getElementById('desc').value };
+            if (id) await updateDoc(doc(db, "cars", id), car); else await addDoc(collection(db, "cars"), car);
+            location.reload();
+        };
 
+        window.deleteCar = async (id) => {
+            if(confirm("هل تريد حذف هذه السيارة نهائياً؟")) {
+                await deleteDoc(doc(db, "cars", id));
+                location.reload();
+            }
+        };
+
+        window.editCar = (id) => {
+            const c = allCars[id];
+            document.getElementById('edit-id').value = id;
+            document.getElementById('name').value = c.name;
+            document.getElementById('img1').value = c.img;
+            document.getElementById('link').value = c.link;
+            document.getElementById('desc').value = c.desc;
+        };
+
+        window.showDetails = (id) => {
+            const c = allCars[id];
+            document.getElementById('d-name').innerText = c.name;
+            document.getElementById('d-img').src = c.img;
+            document.getElementById('d-desc').innerText = c.desc;
+            document.getElementById('d-link').onclick = () => window.open(c.link, '_blank');
+            showPage('details-page');
+        };
+
+        window.showPage = (id) => {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        };
+
+        async function loadCars() {
+            const snap = await getDocs(collection(db, "cars"));
+            const grid = document.getElementById('cars-grid');
+            snap.forEach((d) => {
+                const c = d.data();
+                allCars[d.id] = c;
+                grid.innerHTML += `<div class="card" onclick="showDetails('${d.id}')">
+                    <img src="${c.img}"><h3>${c.name}</h3></div>`;
+            });
+        }
+
+        async function loadAdminList() {
+            const snap = await getDocs(collection(db, "cars"));
+            document.getElementById('admin-list').innerHTML = "";
+            snap.forEach((d) => {
+                const c = d.data();
+                document.getElementById('admin-list').innerHTML += `<div style="background:#222; padding:5px; margin:5px;">${c.name} 
+                    <button onclick="editCar('${d.id}')">تعديل</button>
+                    <button onclick="deleteCar('${d.id}')" style="background:red;">حذف</button></div>`;
+            });
+        }
+        loadCars();
+    </script>
 </body>
 </html>
